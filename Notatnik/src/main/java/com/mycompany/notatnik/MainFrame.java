@@ -9,13 +9,15 @@ package com.mycompany.notatnik;
  * @author egzamin
  */
 public class MainFrame extends javax.swing.JFrame {
-
+Database db = new Database();
     /**
      * Creates new form MainFrame
      */
     public MainFrame() {
         initComponents();
         setLocationRelativeTo(null);
+        db.connect();
+        db.executeQuery("select * from content");
     }
 
     /**

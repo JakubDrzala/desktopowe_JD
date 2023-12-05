@@ -6,24 +6,24 @@ package com.mycompany.notatnik;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
  * @author jakub
  */
 public class Database {
-    private Connection connection;
+    private Connection conn;
 
     public void connect() {
         try {
-            String dbUrl = "jdbc:mysql://localhost:3306/Notebook";
+            String dbUrl = "jdbc:mysql://localhost:3306/notes";
             String username = "root";
             String password = "";
 
-            connection = DriverManager.getConnection(dbUrl, username, password);
-            if (connection != null) {
-            }
+            conn = DriverManager.getConnection(dbUrl, username, password);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -31,23 +31,18 @@ public class Database {
 
     public void disconnect() {
         try {
-            if (connection != null && !connection.isClosed()) {
-                connection.close();
+            if (conn != null && !conn.isClosed()) {
+                conn.close();
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-
-    // Dodaj inne metody związane z operacjami na bazie danych, jeśli potrzebujesz
-
-    // Przykład metody do wykonywania zapytań SQL
+    
     public void executeQuery(String query) {
         try {
-            
-            // Tworzymy statement i wykonujemy zapytanie
-            // PreparedStatement preparedStatement = connection.prepareStatement(query);
-            // ... wykonanie zapytania i przetwarzanie wyników
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from content");
         } catch (SQLException e) {
             e.printStackTrace();
         }
