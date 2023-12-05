@@ -4,12 +4,17 @@
  */
 package com.mycompany.notatnik;
 
+import java.util.List;
+import javax.swing.DefaultListModel;
+
 /**
  *
  * @author egzamin
  */
 public class MainFrame extends javax.swing.JFrame {
 Database db = new Database();
+DefaultListModel<String> listModel = new DefaultListModel<>();
+
     /**
      * Creates new form MainFrame
      */
@@ -17,7 +22,6 @@ Database db = new Database();
         initComponents();
         setLocationRelativeTo(null);
         db.connect();
-        db.executeQuery("select * from content");
     }
 
     /**
@@ -32,7 +36,7 @@ Database db = new Database();
         jD_file = new javax.swing.JDialog();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        jList_files = new javax.swing.JList<>();
         jD_about = new javax.swing.JDialog();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -40,6 +44,7 @@ Database db = new Database();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTa_note = new javax.swing.JTextArea();
+        jTF_title = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMi_new = new javax.swing.JMenuItem();
@@ -51,9 +56,7 @@ Database db = new Database();
         jMi_fontUP = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
 
-        jPanel3.setBackground(new java.awt.Color(153, 255, 204));
-
-        jScrollPane2.setViewportView(jList1);
+        jScrollPane2.setViewportView(jList_files);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -61,7 +64,7 @@ Database db = new Database();
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -77,7 +80,6 @@ Database db = new Database();
         jD_fileLayout.setHorizontalGroup(
             jD_fileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jD_fileLayout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -135,10 +137,18 @@ Database db = new Database();
 
         jPanel1.setBackground(new java.awt.Color(153, 255, 204));
 
-        jTa_note.setEditable(false);
         jTa_note.setColumns(20);
         jTa_note.setRows(5);
+        jTa_note.setFocusable(false);
         jScrollPane1.setViewportView(jTa_note);
+
+        jTF_title.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jTF_title.setFocusable(false);
+        jTF_title.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTF_titleActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -146,14 +156,18 @@ Database db = new Database();
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(27, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jTF_title)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE))
                 .addGap(23, 23, 23))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
+                .addComponent(jTF_title, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -170,10 +184,20 @@ Database db = new Database();
 
         jMi_open.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMi_open.setText("Otwórz");
+        jMi_open.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMi_openActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMi_open);
 
         jMi_save.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMi_save.setText("Zapisz");
+        jMi_save.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMi_saveActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMi_save);
 
         jMi_delete.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_DELETE, 0));
@@ -226,7 +250,8 @@ Database db = new Database();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMi_newActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMi_newActionPerformed
-        jTa_note.setEditable(true);
+        jTa_note.setFocusable(true);
+        jTF_title.setFocusable(true);
     }//GEN-LAST:event_jMi_newActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
@@ -234,6 +259,31 @@ Database db = new Database();
         jD_about.setSize(640, 150);
         jD_about.setLocationRelativeTo(null);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMi_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMi_saveActionPerformed
+        String title = jTF_title.getText();
+        String content = jTa_note.getText();
+        
+        db.queryInsert("INSERT INTO `contents` (`content`) VALUES\n" +
+                        "('" + content + "')");
+        db.queryInsert("INSERT INTO `note` (`title`) VALUES\n" +
+                        "('" + title + "')");
+    }//GEN-LAST:event_jMi_saveActionPerformed
+
+    private void jTF_titleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTF_titleActionPerformed
+
+    }//GEN-LAST:event_jTF_titleActionPerformed
+
+    private void jMi_openActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMi_openActionPerformed
+        jD_file.setVisible(true);
+        jD_file.setSize(250, 150);
+        jD_file.setLocationRelativeTo(null);
+        List<String> titlesList = db.queryTitle();
+        for (String title : titlesList) {
+            listModel.addElement(title);
+        }
+        jList_files.setModel(listModel);
+    }//GEN-LAST:event_jMi_openActionPerformed
 
     /**
      * @param args the command line arguments
@@ -275,7 +325,7 @@ Database db = new Database();
     private javax.swing.JDialog jD_file;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JList<String> jList1;
+    private javax.swing.JList<String> jList_files;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
@@ -291,6 +341,7 @@ Database db = new Database();
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField jTF_title;
     private javax.swing.JTextArea jTa_note;
     // End of variables declaration//GEN-END:variables
 }
