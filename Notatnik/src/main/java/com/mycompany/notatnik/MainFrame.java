@@ -4,6 +4,7 @@
  */
 package com.mycompany.notatnik;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
 
@@ -12,16 +13,18 @@ import javax.swing.DefaultListModel;
  * @author egzamin
  */
 public class MainFrame extends javax.swing.JFrame {
-Database db = new Database();
-DefaultListModel<String> listModel = new DefaultListModel<>();
-
+    Database db = new Database();
+    DefaultListModel<String> listModel = new DefaultListModel<>();
+    List<Note> noteList = new ArrayList<>();   
     /**
+     * 
      * Creates new form MainFrame
      */
     public MainFrame() {
+        db.connect();
         initComponents();
         setLocationRelativeTo(null);
-        db.connect();
+        noteList = db.queryTable();
     }
 
     /**
@@ -53,9 +56,13 @@ DefaultListModel<String> listModel = new DefaultListModel<>();
         jMi_delete = new javax.swing.JMenuItem();
         jMi_close = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
-        jMi_fontUP = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
 
+        jList_files.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jList_filesMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jList_files);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -216,9 +223,6 @@ DefaultListModel<String> listModel = new DefaultListModel<>();
         });
         jMi_close.add(jMenuItem1);
 
-        jMi_fontUP.setText("Powiększ czcionkę");
-        jMi_close.add(jMi_fontUP);
-
         jMenuItem2.setText("O programie");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -263,11 +267,10 @@ DefaultListModel<String> listModel = new DefaultListModel<>();
     private void jMi_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMi_saveActionPerformed
         String title = jTF_title.getText();
         String content = jTa_note.getText();
-        
-        db.queryInsert("INSERT INTO `contents` (`content`) VALUES\n" +
-                        "('" + content + "')");
-        db.queryInsert("INSERT INTO `note` (`title`) VALUES\n" +
-                        "('" + title + "')");
+
+        if (!title.isEmpty() || !content.isEmpty()) {
+            db.queryInsert(title, content);
+        }    
     }//GEN-LAST:event_jMi_saveActionPerformed
 
     private void jTF_titleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTF_titleActionPerformed
@@ -278,12 +281,25 @@ DefaultListModel<String> listModel = new DefaultListModel<>();
         jD_file.setVisible(true);
         jD_file.setSize(250, 150);
         jD_file.setLocationRelativeTo(null);
-        List<String> titlesList = db.queryTitle();
-        for (String title : titlesList) {
-            listModel.addElement(title);
+        listModel.clear();
+        
+        for (Note note : noteList) {
+            listModel.addElement(note.getTitle());
         }
         jList_files.setModel(listModel);
     }//GEN-LAST:event_jMi_openActionPerformed
+
+    private void jList_filesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList_filesMouseClicked
+        int index = jList_files.locationToIndex(evt.getPoint());
+        if (index >= 0 && index < noteList.size() && evt.getClickCount() == 2) {
+            Note selectedNote = noteList.get(index);
+            jTF_title.setText(selectedNote.getTitle());
+            jTa_note.setText(selectedNote.getContent());
+            jD_file.setVisible(false);
+            jTa_note.setFocusable(true);
+            jTF_title.setFocusable(true);
+        }
+    }//GEN-LAST:event_jList_filesMouseClicked
 
     /**
      * @param args the command line arguments
@@ -319,7 +335,7 @@ DefaultListModel<String> listModel = new DefaultListModel<>();
             }
         });
     }
-
+     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDialog jD_about;
     private javax.swing.JDialog jD_file;
@@ -332,7 +348,6 @@ DefaultListModel<String> listModel = new DefaultListModel<>();
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenu jMi_close;
     private javax.swing.JMenuItem jMi_delete;
-    private javax.swing.JMenuItem jMi_fontUP;
     private javax.swing.JMenuItem jMi_new;
     private javax.swing.JMenuItem jMi_open;
     private javax.swing.JMenuItem jMi_save;

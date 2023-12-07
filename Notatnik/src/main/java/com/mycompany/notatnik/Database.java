@@ -38,30 +38,44 @@ public class Database {
         }
     }
     
-    public void queryInsert(String query) {
-        try {
-            Statement stmt = conn.createStatement();
+    public void queryInsert(String title, String content) {
+        try (Statement stmt = conn.createStatement()) {
+            String insertContentQuery = "INSERT INTO contents (content) VALUES ('" + content + "')";
+            stmt.executeUpdate(insertContentQuery, Statement.RETURN_GENERATED_KEYS);
+
+            ResultSet rs = stmt.getGeneratedKeys();
+            int contentId = -1;
+            if (rs.next()) {
+                contentId = rs.getInt(1);
+            }
+
+            String insertNoteQuery = "INSERT INTO note (title, content_id) VALUES ('" + title + "', " + contentId + ")";
+            stmt.executeUpdate(insertNoteQuery);
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
     
-    public List<String> queryTitle() {
-        List<String> titles = new ArrayList<>();
+    public List<Note> queryTable() {
+        List<Note> notes = new ArrayList<>();
         try {
             Statement stmt = conn.createStatement();
-            ResultSet resultSet = stmt.executeQuery("SELECT title FROM note");
+            ResultSet resultSet = stmt.executeQuery("SELECT note.note_id, note.title, contents.content FROM note INNER JOIN contents ON note.content_id = contents.id ");
 
             while (resultSet.next()) {
+                int note_id = resultSet.getInt("note_id");
                 String title = resultSet.getString("title");
-                titles.add(title);
+                String content = resultSet.getString("content");
+                Note note = new Note();
+                note.setTitle(title);
+                note.setContent(content);
+                notes.add(note);
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        return titles;
+        return notes;
     }
 }
