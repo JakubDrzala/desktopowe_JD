@@ -4,6 +4,8 @@
  */
 package com.mycompany.gadugadu;
 
+import java.awt.Color;
+
 /**
  *
  * @author egzamin
@@ -30,43 +32,44 @@ public class GG_logowanie extends javax.swing.JFrame {
         jD_rejestracja = new javax.swing.JDialog();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jPasswordField2 = new javax.swing.JPasswordField();
-        jLabel6 = new javax.swing.JLabel();
-        jPasswordField3 = new javax.swing.JPasswordField();
+        jL_login_r = new javax.swing.JLabel();
+        jTF_login_r = new javax.swing.JTextField();
+        jL_haslo_r = new javax.swing.JLabel();
+        jPF_haslo_r = new javax.swing.JPasswordField();
+        jL_haslo_p_r = new javax.swing.JLabel();
+        jPF_haslo_p_r = new javax.swing.JPasswordField();
         jB_rejestracja = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        jL_login = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
+        jL_haslo = new javax.swing.JLabel();
         jPasswordField1 = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jB_zaloguj = new javax.swing.JButton();
+        jB_r = new javax.swing.JButton();
 
+        jD_rejestracja.setTitle("Rejestracja");
         jD_rejestracja.setResizable(false);
 
         jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel4.setFocusTraversalPolicyProvider(true);
 
-        jLabel4.setText("Login:");
+        jL_login_r.setText("Login:");
 
-        jLabel5.setText("Hasło:");
+        jL_haslo_r.setText("Hasło:");
 
-        jPasswordField2.addActionListener(new java.awt.event.ActionListener() {
+        jPF_haslo_r.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordField2ActionPerformed(evt);
+                jPF_haslo_rActionPerformed(evt);
             }
         });
 
-        jLabel6.setText("Powtórz hasło:");
+        jL_haslo_p_r.setText("Powtórz hasło:");
 
-        jPasswordField3.addActionListener(new java.awt.event.ActionListener() {
+        jPF_haslo_p_r.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordField3ActionPerformed(evt);
+                jPF_haslo_p_rActionPerformed(evt);
             }
         });
 
@@ -87,16 +90,16 @@ public class GG_logowanie extends javax.swing.JFrame {
                     .addComponent(jB_rejestracja, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
+                            .addComponent(jL_login_r)
+                            .addComponent(jL_haslo_r))
                         .addGap(56, 56, 56)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPasswordField2, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
-                            .addComponent(jTextField2)))
+                            .addComponent(jPF_haslo_r, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
+                            .addComponent(jTF_login_r)))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
+                        .addComponent(jL_haslo_p_r)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPasswordField3)))
+                        .addComponent(jPF_haslo_p_r)))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -104,16 +107,16 @@ public class GG_logowanie extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jL_login_r)
+                    .addComponent(jTF_login_r, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
+                    .addComponent(jPF_haslo_r, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jL_haslo_r))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(jPasswordField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jL_haslo_p_r)
+                    .addComponent(jPF_haslo_p_r, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jB_rejestracja)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -142,6 +145,7 @@ public class GG_logowanie extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Logowanie");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -161,16 +165,21 @@ public class GG_logowanie extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel2.setFocusTraversalPolicyProvider(true);
 
-        jLabel2.setText("Login:");
+        jL_login.setText("Login:");
 
-        jLabel3.setText("Hasło:");
+        jL_haslo.setText("Hasło:");
 
-        jButton1.setText("Zaloguj");
-
-        jButton2.setText("Załóż konto");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jB_zaloguj.setText("Zaloguj");
+        jB_zaloguj.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jB_zalogujActionPerformed(evt);
+            }
+        });
+
+        jB_r.setText("Załóż konto");
+        jB_r.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB_rActionPerformed(evt);
             }
         });
 
@@ -181,16 +190,16 @@ public class GG_logowanie extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jB_r, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
+                            .addComponent(jL_login)
+                            .addComponent(jL_haslo))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPasswordField1)
                             .addComponent(jTextField1)))
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jB_zaloguj, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -198,16 +207,16 @@ public class GG_logowanie extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+                    .addComponent(jL_login)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
+                    .addComponent(jL_haslo)
                     .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(jB_zaloguj)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(jB_r)
                 .addContainerGap())
         );
 
@@ -229,23 +238,47 @@ public class GG_logowanie extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jPasswordField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField2ActionPerformed
+    private void jPF_haslo_rActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPF_haslo_rActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordField2ActionPerformed
+    }//GEN-LAST:event_jPF_haslo_rActionPerformed
 
-    private void jPasswordField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField3ActionPerformed
+    private void jPF_haslo_p_rActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPF_haslo_p_rActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordField3ActionPerformed
+    }//GEN-LAST:event_jPF_haslo_p_rActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jB_rActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_rActionPerformed
         jD_rejestracja.setSize(300, 185);
         jD_rejestracja.setLocationRelativeTo(null);
         jD_rejestracja.setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jB_rActionPerformed
 
     private void jB_rejestracjaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_rejestracjaActionPerformed
-        jD_rejestracja.setVisible(false);
+        String haslo = jPF_haslo_r.getText();
+        String login = jTF_login_r.getText();
+        if(login.isEmpty() && haslo.isEmpty()){
+            jL_login_r.setForeground(Color.red);
+            jL_haslo_r.setForeground(Color.red);
+            jL_haslo_p_r.setForeground(Color.red);
+        }else{
+            jL_login_r.setForeground(Color.black);
+            jL_haslo_r.setForeground(Color.black);
+            jL_haslo_p_r.setForeground(Color.black);
+            if(haslo.equals(jPF_haslo_p_r.getText())){
+                jD_rejestracja.setVisible(false);
+                jTF_login_r.setText("");
+                jPF_haslo_r.setText("");
+                jPF_haslo_p_r.setText("");
+            }else{
+                jL_login_r.setForeground(Color.red);
+                jL_haslo_r.setForeground(Color.red);
+                jL_haslo_p_r.setForeground(Color.red);
+            }
+        }
     }//GEN-LAST:event_jB_rejestracjaActionPerformed
+
+    private void jB_zalogujActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_zalogujActionPerformed
+        
+    }//GEN-LAST:event_jB_zalogujActionPerformed
 
     /**
      * @param args the command line arguments
@@ -281,26 +314,27 @@ public class GG_logowanie extends javax.swing.JFrame {
             }
         });
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jB_r;
     private javax.swing.JButton jB_rejestracja;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jB_zaloguj;
     private javax.swing.JDialog jD_rejestracja;
+    private javax.swing.JLabel jL_haslo;
+    private javax.swing.JLabel jL_haslo_p_r;
+    private javax.swing.JLabel jL_haslo_r;
+    private javax.swing.JLabel jL_login;
+    private javax.swing.JLabel jL_login_r;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JPasswordField jPF_haslo_p_r;
+    private javax.swing.JPasswordField jPF_haslo_r;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JPasswordField jPasswordField2;
-    private javax.swing.JPasswordField jPasswordField3;
+    private javax.swing.JTextField jTF_login_r;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }

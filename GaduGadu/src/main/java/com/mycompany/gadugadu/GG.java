@@ -15,6 +15,8 @@ public class GG extends javax.swing.JFrame {
      */
     public GG() {
         initComponents();
+        setLocationRelativeTo(null);
+
     }
 
     /**
