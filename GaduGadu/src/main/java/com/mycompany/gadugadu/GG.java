@@ -17,9 +17,7 @@ public class GG extends javax.swing.JFrame {
      */
     public GG() {
         initComponents();
-        jD_logowanie.setSize(300, 260);
-        jD_logowanie.setVisible(true);
-        jD_logowanie.setLocationRelativeTo(null);
+        Start(true);
         setLocationRelativeTo(null);
     }
 
@@ -328,6 +326,8 @@ public class GG extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jB_logowanieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_logowanieActionPerformed
+        jD_logowanie.setVisible(false);
+        jD_logowanie.setSize(0,0);
         new GG().setVisible(true);
     }//GEN-LAST:event_jB_logowanieActionPerformed
 
@@ -405,6 +405,19 @@ public class GG extends javax.swing.JFrame {
         }
     }
     
+    public void Start(boolean logowanie){
+        if(logowanie){
+            jD_logowanie.setSize(300, 260);
+            jD_logowanie.setLocationRelativeTo(null);
+            jD_logowanie.setVisible(true);
+            System.out.println(logowanie);
+            logowanie = false;
+        }
+        else{
+            jD_logowanie.setVisible(false);
+        }
+        logowanie = false;
+    }
     boolean zle = false;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
