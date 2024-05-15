@@ -31,13 +31,12 @@ public class GG extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         serwer = new Serwer();
         
-            try {
-        clientSocket = new Socket("127.0.0.1", 6666);
-        out = new PrintWriter(clientSocket.getOutputStream(), true);
-        in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-        receiveMessages();
-    } catch (IOException e) {
-        e.printStackTrace();
+        try {
+            clientSocket = new Socket("127.0.0.1", 6666);
+            out = new PrintWriter(clientSocket.getOutputStream(), true);
+            in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+        } catch (IOException e) {
+            System.out.println(e);
     }
     }
 
@@ -372,9 +371,9 @@ public class GG extends javax.swing.JFrame {
     }//GEN-LAST:event_jB_ggActionPerformed
 
     private void jB_wyslijActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_wyslijActionPerformed
-        String message = jTA_wiadomosc.getText();
-        jTA_chat.append("You: " + message + "\n");
-        out.println(message);
+        String wiadomosc = jTA_wiadomosc.getText();
+        jTA_chat.append("You: " + wiadomosc + "\n");
+        out.println(wiadomosc);
         jTA_wiadomosc.setText("");
     }//GEN-LAST:event_jB_wyslijActionPerformed
 
@@ -423,16 +422,6 @@ public class GG extends javax.swing.JFrame {
             jL_r_login.setForeground(Color.black);
             jL_r_haslo.setForeground(Color.black);
             jL_r_hasloPowtorzone.setForeground(Color.black);
-        }
-    }
-   private void receiveMessages() {
-        try {
-            String message;
-            while ((message = in.readLine()) != null) {
-                jTA_chat.append(message + "\n");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
     
