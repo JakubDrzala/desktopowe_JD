@@ -1,8 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.gadugadu;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -18,13 +15,13 @@ public class Serwer {
 
     public static void main(String[] args) {
         try (ServerSocket serverSocket = new ServerSocket(port)) {
-            System.out.println("port: " + port);
+            System.out.println("Serwer nasłuchuje na porcie: " + port);
             while (true) {
                 Socket clientSocket = serverSocket.accept();
-                System.out.println("nowy klient: " + clientSocket);
+                System.out.println("Nowy klient: " + clientSocket);
                 PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
                 clientWriters.add(out);
-                Thread clientHandler = new Thread(new ClientHandler(clientSocket));
+                Thread clientHandler = new Thread(new ClientHandler(clientSocket, out));
                 clientHandler.start();
             }
         } catch (IOException e) {
@@ -36,34 +33,44 @@ public class Serwer {
         private Socket clientSocket;
         private PrintWriter out;
         private BufferedReader in;
-    
-        public ClientHandler(Socket socket) {
+
+        public ClientHandler(Socket socket, PrintWriter out) {
             this.clientSocket = socket;
+            this.out = out;
             try {
-                out = new PrintWriter(clientSocket.getOutputStream(), true);
                 in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-    
+
         @Override
         public void run() {
             try {
                 String inputLine;
                 while ((inputLine = in.readLine()) != null) {
+                    System.out.println(inputLine);
                     broadcast(inputLine);
                 }
-                System.out.println(inputLine);
-                clientSocket.close();
             } catch (IOException e) {
                 e.printStackTrace();
+            } finally {
+                try {
+                    clientSocket.close();
+                    synchronized (clientWriters) {
+                        clientWriters.remove(out);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
 
         private static void broadcast(String message) {
-            for (PrintWriter writer : clientWriters) {
-                writer.println(message);
+            synchronized (clientWriters) {
+                for (PrintWriter writer : clientWriters) {
+                    writer.println(message);
+                }
             }
         }
     }
