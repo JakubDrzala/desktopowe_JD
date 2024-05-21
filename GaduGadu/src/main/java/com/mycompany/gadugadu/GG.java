@@ -4,14 +4,11 @@
  */
 package com.mycompany.gadugadu;
 
-import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-import javax.swing.DefaultListModel;
-import javax.swing.ListModel;
 
 /**
  *
@@ -32,8 +29,6 @@ public class GG extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         Start();
         serwer = new Serwer();
-        ListModel<String> userListModel = new DefaultListModel<>();
-        jList1.setModel(userListModel);
         initializeSocket();
     }
 
@@ -56,8 +51,6 @@ public class GG extends javax.swing.JFrame {
         jB_gg = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTA_chat = new javax.swing.JTextArea();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
         jTA_wiadomosc = new javax.swing.JTextArea();
         jB_wyslij = new javax.swing.JButton();
@@ -152,9 +145,6 @@ public class GG extends javax.swing.JFrame {
         jTA_chat.setFocusable(false);
         jScrollPane1.setViewportView(jTA_chat);
 
-        jList1.setBackground(new java.awt.Color(204, 255, 255));
-        jScrollPane2.setViewportView(jList1);
-
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("Wiadomość:");
 
@@ -174,11 +164,7 @@ public class GG extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jB_gg)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                    .addComponent(jB_gg)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -193,12 +179,10 @@ public class GG extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jB_gg)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTA_wiadomosc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTA_wiadomosc, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jB_wyslij)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -221,7 +205,9 @@ public class GG extends javax.swing.JFrame {
 
     private void jB_logowanieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_logowanieActionPerformed
         jD_logowanie.setVisible(false);
-        new GG().setVisible(true);
+        nick = jTF_login.getText();
+        jTF_login.setText("");
+        this.setVisible(true);
     }//GEN-LAST:event_jB_logowanieActionPerformed
 
     private void jB_ggActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_ggActionPerformed
@@ -230,7 +216,7 @@ public class GG extends javax.swing.JFrame {
 
     private void jB_wyslijActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_wyslijActionPerformed
         String wiadomosc = jTA_wiadomosc.getText();
-        sendMessage(wiadomosc);
+        sendMessage(nick + ": " + wiadomosc);
         jTA_wiadomosc.setText("");
     }//GEN-LAST:event_jB_wyslijActionPerformed
 
@@ -310,6 +296,7 @@ public class GG extends javax.swing.JFrame {
         }
     }
     boolean zle = false;
+    String nick = "";
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jB_gg;
@@ -319,11 +306,9 @@ public class GG extends javax.swing.JFrame {
     private javax.swing.JLabel jL_login;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTA_chat;
     private javax.swing.JTextArea jTA_wiadomosc;
     private javax.swing.JTextField jTF_login;
